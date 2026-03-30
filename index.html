@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mandar Agrotech – Bio Stimulant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', 'Noto Sans Devanagari', sans-serif;
+      padding: 20px 16px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.12), 0 2px 10px rgba(0,0,0,0.06);
+      width: 100%;
+      max-width: 500px;
+      overflow: hidden;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(18px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── Company Bar ── */
+    .company-bar {
+      padding: 14px 18px 13px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1.5px solid #e8f5d0;
+    }
+
+    .logo-box {
+      width: 44px; height: 44px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, #3a9e4f, #a8d96c);
+      box-shadow: 0 3px 10px rgba(80,170,50,0.28);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-box svg { width: 25px; height: 25px; }
+
+    .company-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 15.5px;
+      color: #1a3a00;
+      line-height: 1.2;
+    }
+
+    .company-info span {
+      font-size: 10px;
+      color: #7aaa40;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── Green Header ── */
+    .card-header {
+      background: linear-gradient(135deg, #a8d96c, #c5e88a);
+      padding: 13px 18px 12px;
+      border-bottom: 2.5px solid #8ec44a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .card-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: #1a3a00;
+    }
+
+    .badge {
+      background: rgba(255,255,255,0.38);
+      color: #2d5a00;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ── Language Tabs ── */
+    .lang-tabs {
+      display: flex;
+      background: #f7fdf0;
+      border-bottom: 1.5px solid #e0f0c0;
+    }
+
+    .lang-tab {
+      flex: 1;
+      text-align: center;
+      padding: 9px 4px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #9aba70;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -1.5px;
+      transition: all 0.2s;
+      font-family: 'Noto Sans Devanagari', 'DM Sans', sans-serif;
+      user-select: none;
+    }
+
+    .lang-tab.active {
+      color: #2d6a00;
+      border-bottom-color: #6ab030;
+      background: #fff;
+    }
+
+    .lang-section { display: none; }
+    .lang-section.active { display: block; }
+
+    /* ── Card Body ── */
+    .card-body { padding: 16px 18px 18px; }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px dashed #e0efd0;
+      font-size: 13px;
+    }
+
+    .info-row:last-child { border-bottom: none; }
+
+    .info-label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 700;
+      color: #1a3a00;
+      font-family: 'Noto Sans Devanagari', 'DM Sans', sans-serif;
+      font-size: 12.5px;
+      white-space: nowrap;
+      min-width: 95px;
+      flex-shrink: 0;
+    }
+
+    .num {
+      background: #a8d96c;
+      color: #1a3a00;
+      width: 21px; height: 21px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10.5px;
+      font-weight: 700;
+      flex-shrink: 0;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .info-val {
+      color: #333;
+      font-size: 12.5px;
+      line-height: 1.55;
+      font-family: 'Noto Sans Devanagari', 'DM Sans', sans-serif;
+      font-weight: 500;
+    }
+
+    .bold { font-weight: 700; color: #111; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #eef9d8;
+      color: #2d6a00;
+      border: 1px solid #c4e88a;
+      border-radius: 14px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: 'Noto Sans Devanagari', 'DM Sans', sans-serif;
+    }
+
+    /* ── Composition ── */
+    .comp-section {
+      padding: 9px 0;
+      border-bottom: 1px dashed #e0efd0;
+    }
+
+    .comp-heading {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 700;
+      color: #1a3a00;
+      font-family: 'Noto Sans Devanagari', 'DM Sans', sans-serif;
+      font-size: 12.5px;
+      margin-bottom: 10px;
+    }
+
+    .comp-grid {
+      background: #f7fdf0;
+      border-radius: 10px;
+      border: 1px solid #e0f0c0;
+      overflow: hidden;
+    }
+
+    .comp-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      border-bottom: 1px dashed #ddefc0;
+      font-size: 12px;
+      color: #444;
+      font-family: 'Noto Sans Devanagari', 'DM Sans', sans-serif;
+      gap: 8px;
+    }
+
+    .comp-item:last-child { border-bottom: none; }
+    .comp-name { flex: 1; line-height: 1.4; }
+
+    .comp-val {
+      font-weight: 700;
+      color: #2d6a00;
+      background: #e4f7c4;
+      padding: 2px 9px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-family: 'DM Sans', sans-serif;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ── Footer ── */
+    .card-footer {
+      background: #f7fdf0;
+      border-top: 1px solid #dcefc4;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      color: #6a8a50;
+      font-family: 'Noto Sans Devanagari', 'DM Sans', sans-serif;
+    }
+
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: #a8d96c; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+<div class="card">
+
+  <!-- Company Bar -->
+  <div class="company-bar">
+    <div class="logo-box">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32 6 C18 18 10 30 10 40 C10 53 20 60 32 60 C44 60 54 53 54 40 C54 30 46 18 32 6Z" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="3" stroke-linejoin="round"/>
+        <line x1="32" y1="58" x2="32" y2="16" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M32 38 Q24 32 16 34" stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        <path d="M32 28 Q26 23 20 25" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <path d="M32 44 Q40 38 48 40" stroke="white" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        <path d="M32 33 Q38 28 44 30" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="company-info">
+      <h2>Mandar Agrotech</h2>
+      <span>Agri Innovation &amp; Bio Solutions</span>
+    </div>
+  </div>
+
+  <!-- Green Header -->
+  <div class="card-header">
+    <h1>Bio Stimulant Registration</h1>
+    <div class="badge">Gazette Notified</div>
+  </div>
+
+  <!-- Language Tabs -->
+  <div class="lang-tabs">
+    <div class="lang-tab active" onclick="switchLang('mr')">मराठी</div>
+    <div class="lang-tab" onclick="switchLang('hi')">हिंदी</div>
+    <div class="lang-tab" onclick="switchLang('en')">English</div>
+  </div>
+
+  <!-- ══ MARATHI ══ -->
+  <div class="lang-section active" id="lang-mr">
+    <div class="card-body">
+      <div class="info-row">
+        <div class="info-label"><span class="num">१</span>अधिसूचना</div>
+        <div class="info-val"><span class="bold">S.O.3741(E)</span> · १३ ऑगस्ट २०२५</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label"><span class="num">२</span>नाव</div>
+        <div class="info-val"><span class="bold">प्रोटीन हायड्रोलायसेट २०% (वनस्पती सोत) (द्रव)</span></div>
+      </div>
+      <div class="comp-section">
+        <div class="comp-heading"><span class="num">३</span>रचना (Composition)</div>
+        <div class="comp-grid">
+          <div class="comp-item"><span class="comp-name">(i) प्रोटीन हायड्रोलायसेट – सोयाबीन, आम्ल जलविच्छेदन (% वजनाने, किमान)</span><span class="comp-val">20</span></div>
+          <div class="comp-item"><span class="comp-name">(ii) डायइथिलीन ग्लायकॉल (% वजनाने, किमान)</span><span class="comp-val">8</span></div>
+          <div class="comp-item"><span class="comp-name">(iii) झेंथम गम (% वजनाने, किमान)</span><span class="comp-val">8</span></div>
+          <div class="comp-item"><span class="comp-name">(iv) सर्फॅक्टंट – एन्विपॉल ३०१० (% वजनाने, किमान)</span><span class="comp-val">5</span></div>
+          <div class="comp-item"><span class="comp-name">(v) सायट्रिक ऑसिड (% वजनाने, किमान)</span><span class="comp-val">2</span></div>
+          <div class="comp-item"><span class="comp-name">(vi) पाणी (% वजनाने)</span><span class="comp-val">QS</span></div>
+          <div class="comp-item"><span class="comp-name">(vii) एकूण (%)</span><span class="comp-val">100</span></div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label"><span class="num">४</span>पीक</div>
+        <div class="info-val"><span class="pill">🌿 भेंडी (Okra)</span></div>
+      </div>
+      <div class="info-row" style="border-bottom:none;">
+        <div class="info-label"><span class="num">५</span>मात्रा</div>
+        <div class="info-val"><span class="pill">तीन पर्णीय फवारण्या · ९०० ग्रॅम/हेक्टर</span></div>
+      </div>
+    </div>
+    <div class="card-footer"><span class="dot"></span>भारत सरकार – कृषी व शेतकरी कल्याण मंत्रालय</div>
+  </div>
+
+  <!-- ══ HINDI ══ -->
+  <div class="lang-section" id="lang-hi">
+    <div class="card-body">
+      <div class="info-row">
+        <div class="info-label"><span class="num">१</span>अधिसूचना</div>
+        <div class="info-val"><span class="bold">S.O.3741(E)</span> · १३ अगस्त २०२५</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label"><span class="num">२</span>नाम</div>
+        <div class="info-val"><span class="bold">प्रोटीन हाइड्रोलाइसेट २०% (पादप सोत) (तरल)</span></div>
+      </div>
+      <div class="comp-section">
+        <div class="comp-heading"><span class="num">३</span>संरचना (Composition)</div>
+        <div class="comp-grid">
+          <div class="comp-item"><span class="comp-name">(i) प्रोटीन हाइड्रोलाइसेट – सोयाबीन, अम्ल जल-अपघटन (% भार से, न्यूनतम)</span><span class="comp-val">20</span></div>
+          <div class="comp-item"><span class="comp-name">(ii) डाइएथिलीन ग्लाइकॉल (% भार से, न्यूनतम)</span><span class="comp-val">8</span></div>
+          <div class="comp-item"><span class="comp-name">(iii) ज़ैंथम गम (% भार से, न्यूनतम)</span><span class="comp-val">8</span></div>
+          <div class="comp-item"><span class="comp-name">(iv) सर्फेक्टेंट – एनविपोल ३०१० (% भार से, न्यूनतम)</span><span class="comp-val">5</span></div>
+          <div class="comp-item"><span class="comp-name">(v) साइट्रिक एसिड (% भार से, न्यूनतम)</span><span class="comp-val">2</span></div>
+          <div class="comp-item"><span class="comp-name">(vi) पानी (% भार से)</span><span class="comp-val">QS</span></div>
+          <div class="comp-item"><span class="comp-name">(vii) कुल (%)</span><span class="comp-val">100</span></div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label"><span class="num">४</span>फसल</div>
+        <div class="info-val"><span class="pill">🌿 भिंडी (Okra)</span></div>
+      </div>
+      <div class="info-row" style="border-bottom:none;">
+        <div class="info-label"><span class="num">५</span>खुराक</div>
+        <div class="info-val"><span class="pill">तीन पर्णीय छिड़काव · ९०० ग्राम/हेक्टेयर</span></div>
+      </div>
+    </div>
+    <div class="card-footer"><span class="dot"></span>भारत सरकार – कृषि एवं किसान कल्याण मंत्रालय</div>
+  </div>
+
+  <!-- ══ ENGLISH ══ -->
+  <div class="lang-section" id="lang-en">
+    <div class="card-body">
+      <div class="info-row">
+        <div class="info-label"><span class="num">1</span>Gazette</div>
+        <div class="info-val"><span class="bold">S.O.3741(E)</span> · 13 Aug 2025</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label"><span class="num">2</span>Title</div>
+        <div class="info-val"><span class="bold">Protein hydrolysate 20% (Plant source) (liquid)</span></div>
+      </div>
+      <div class="comp-section">
+        <div class="comp-heading"><span class="num">3</span>Composition</div>
+        <div class="comp-grid">
+          <div class="comp-item"><span class="comp-name">(i) Protein hydrolysate – soybean, acid hydrolysis (% by wt, min)</span><span class="comp-val">20</span></div>
+          <div class="comp-item"><span class="comp-name">(ii) Diethylene Glycol (% by wt, min)</span><span class="comp-val">8</span></div>
+          <div class="comp-item"><span class="comp-name">(iii) Xanthum gum (% by wt, min)</span><span class="comp-val">8</span></div>
+          <div class="comp-item"><span class="comp-name">(iv) Surfactant – Envipol 3010 (% by wt, min)</span><span class="comp-val">5</span></div>
+          <div class="comp-item"><span class="comp-name">(v) Citric acid (% by wt, min)</span><span class="comp-val">2</span></div>
+          <div class="comp-item"><span class="comp-name">(vi) Water (% by wt)</span><span class="comp-val">QS</span></div>
+          <div class="comp-item"><span class="comp-name">(vii) Total (%)</span><span class="comp-val">100</span></div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-label"><span class="num">4</span>Crop</div>
+        <div class="info-val"><span class="pill">🌿 Okra</span></div>
+      </div>
+      <div class="info-row" style="border-bottom:none;">
+        <div class="info-label"><span class="num">5</span>Dose</div>
+        <div class="info-val"><span class="pill">Three foliar applications · 900 g/ha</span></div>
+      </div>
+    </div>
+    <div class="card-footer"><span class="dot"></span>Govt. of India – Ministry of Agriculture &amp; Farmers Welfare</div>
+  </div>
+
+</div>
+
+<script>
+  function switchLang(lang) {
+    document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.lang-section').forEach(s => s.classList.remove('active'));
+    document.querySelector('[onclick="switchLang(\'' + lang + '\')"]').classList.add('active');
+    document.getElementById('lang-' + lang).classList.add('active');
+  }
+</script>
+</body>
+</html>
